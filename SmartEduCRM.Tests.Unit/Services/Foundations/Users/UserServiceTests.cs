@@ -1,9 +1,11 @@
-﻿using Moq;
+﻿using System.Linq.Expressions;
+using Moq;
 using SmartEduCRM.Api.Brokers.Loggings;
 using SmartEduCRM.Api.Brokers.Storages;
 using SmartEduCRM.Api.Models.Foundations.Users;
 using SmartEduCRM.Api.Services.Foundations.Users;
 using Tynamix.ObjectFiller;
+using Xeptions;
 
 namespace SmartEduCRM.Tests.Unit.Services.Foundations.Users
 {
@@ -28,6 +30,14 @@ namespace SmartEduCRM.Tests.Unit.Services.Foundations.Users
 
         private static DateTimeOffset GetRandomDateTimeOffset() =>
             new DateTimeRange(earliestDate: new DateTime()).GetValue();
+
+        private Expression<Func<Xeption, bool>> SameExceptionAs(Xeption expectedException)
+        {
+            return actualException =>
+                actualException.Message == expectedException.Message
+                && actualException.InnerException.Message == expectedException.InnerException.Message
+                && (actualException.InnerException as Xeption).DataEquals(expectedException.Data);
+        }
 
         private static Filler<User> CreateUserFiller(DateTimeOffset date)
         {
