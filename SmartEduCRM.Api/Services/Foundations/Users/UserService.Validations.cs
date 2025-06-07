@@ -14,7 +14,8 @@ namespace SmartEduCRM.Api.Services.Foundations.Users
                 (Rule: IsInvalid(user.FirstName), Parameter: nameof(User.FirstName)),
                 (Rule: IsInvalid(user.LastName), Parameter: nameof(User.LastName)),
                 (Rule: IsInvalid(user.Email), Parameter: nameof(User.Email)),
-                (Rule: IsInvalid(user.PasswordHash), Parameter: nameof(User.PasswordHash))
+                (Rule: IsInvalid(user.PasswordHash), Parameter: nameof(User.PasswordHash)),
+                (Rule: IsInvalid(user.Role), Parameter: nameof(User.Role))
             );
         }
 
@@ -36,6 +37,12 @@ namespace SmartEduCRM.Api.Services.Foundations.Users
         {
             Condition = string.IsNullOrWhiteSpace(text),
             Message = "Text is required"
+        };
+
+        private static dynamic IsInvalid(UserRole role) => new
+        {
+            Condition = Enum.IsDefined(role) is false,
+            Message = "Role is invalid"
         };
 
         private static void Validate(params (dynamic Rule, string Parameter)[] validations)
