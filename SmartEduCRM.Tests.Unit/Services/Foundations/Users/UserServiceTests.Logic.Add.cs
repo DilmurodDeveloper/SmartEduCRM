@@ -32,6 +32,7 @@ namespace SmartEduCRM.Tests.Unit.Services.Foundations.Users
                     Times.Once);
 
             this.storageBrokerMock.VerifyNoOtherCalls();
+            this.loggingBrokerMock.VerifyNoOtherCalls();
         }
     }
 }
