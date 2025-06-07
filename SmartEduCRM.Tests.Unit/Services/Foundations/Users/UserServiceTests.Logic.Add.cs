@@ -13,12 +13,12 @@ namespace SmartEduCRM.Tests.Unit.Services.Foundations.Users
             // given
             User randomUser = CreateRandomUser();
             User inputUser = randomUser;
-            User returningUser = inputUser;
-            User expectedUser = returningUser.DeepClone();
+            User storageUser = inputUser;
+            User expectedUser = storageUser.DeepClone();
 
             this.storageBrokerMock.Setup(broker =>
                 broker.InsertUserAsync(inputUser))
-                    .ReturnsAsync(returningUser);
+                    .ReturnsAsync(storageUser);
             
             // when
             User actualUser =
