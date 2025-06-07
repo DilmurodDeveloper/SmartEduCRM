@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using SmartEduCRM.Api.Brokers.Loggings;
 using SmartEduCRM.Api.Brokers.Storages;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,7 @@ builder.Services.AddDbContext<StorageBroker>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddTransient<IStorageBroker, StorageBroker>();
+builder.Services.AddTransient<ILoggingBroker, LoggingBroker>();
 
 var app = builder.Build();
 
