@@ -36,7 +36,7 @@ namespace SmartEduCRM.Tests.Unit.Services.Foundations.Users
             return actualException =>
                 actualException.Message == expectedException.Message
                 && actualException.InnerException.Message == expectedException.InnerException.Message
-                && (actualException.InnerException as Xeption).DataEquals(expectedException.Data);
+                && (actualException.InnerException as Xeption).DataEquals(expectedException.InnerException.Data);
         }
 
         private static Filler<User> CreateUserFiller(DateTimeOffset date)

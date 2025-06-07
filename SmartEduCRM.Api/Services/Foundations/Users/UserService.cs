@@ -18,11 +18,11 @@ namespace SmartEduCRM.Api.Services.Foundations.Users
         }
 
         public ValueTask<User> AddUserAsync(User user) =>
-            TryCatch(async () =>
-            {
-                ValidateUserNotNull(user);
+        TryCatch(async () =>
+        {
+            ValidateUserOnAdd(user);
 
-                return await this.storageBroker.InsertUserAsync(user);
-            });
+            return await this.storageBroker.InsertUserAsync(user);
+        });
     }
 }
