@@ -1,4 +1,4 @@
-﻿namespace SmartEduCRM.Api.Models.Foundations
+﻿namespace SmartEduCRM.Api.Models.Foundations.Users
 {
     public class User
     {

@@ -1,4 +1,4 @@
-﻿using SmartEduCRM.Api.Models.Foundations;
+﻿using SmartEduCRM.Api.Models.Foundations.Users;
 
 namespace SmartEduCRM.Api.Brokers.Storages
 {
